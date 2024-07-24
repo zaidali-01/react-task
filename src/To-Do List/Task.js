@@ -26,10 +26,14 @@ function Adding()
         <>
         <form style={{marginLeft:"50px"}}>
             <label>Enter title:<br></br>
-                <input type="text" value={a} onChange={(e)=>seta(e.target.value)} style={{padding:"2px", marginBottom:"10px", textAllign:"center", borderColor:"gray", color:"gray"}} />
+                <input type="text" value={a} onChange={(e)=>seta(e.target.value)} style={{padding:"2px", width:"7.5%", marginBottom:"10px", textAllign:"center", borderColor:"gray", color:"gray"}} />
             </label><br></br>
-            <label>Enter status:<br></br>
-                <input type="text" value={b} onChange={(e)=>setb(e.target.value)} style={{padding:"2px", marginBottom:"10px", textAllign:"center", borderColor:"gray", color:"gray"}} />
+            <label>Choose status:<br></br>
+                <select value={b} onChange={(e)=>setb(e.target.value)} style={{padding:"2px", marginBottom:"10px", textAllign:"center", borderColor:"gray", color:"gray"}}>
+                    <option>-Choose-</option>
+                    <option value="completed">completed</option>
+                    <option value="uncompleted">uncompleted</option>
+                </select>
             </label><br></br>
             <button onClick={()=>addtask(a,b)} style={{padding:"5px", backgroundColor:"gray"}}>Add</button>
         </form>
@@ -69,7 +73,7 @@ function Update()
         <>
         <form>
         <label>Enter title:<br></br>
-                <input type="text" value={z} onChange={(e)=>setz(e.target.value)} style={{padding:"2px", marginBottom:"10px", textAllign:"center", borderColor:"gray", color:"gray"}} />
+                <input type="text" value={z} onChange={(e)=>setz(e.target.value)} style={{padding:"2px", width:"7.5%", marginBottom:"10px", textAllign:"center", borderColor:"gray", color:"gray"}} />
             </label><br></br>
             <button onClick={()=>update(z)} style={{padding:"5px", backgroundColor:"gray"}}>Update Status</button>
         </form>
@@ -98,7 +102,7 @@ function Uncompleted()
         <>
         <h3>The uncompleted tasks are:</h3>
         <ul className={styles.abc}>
-            {arra.map((ab)=> ab.status!="completed" && <li className={styles.xyz}>{ab.title}</li>)}
+            {arra.map((ab)=> ab.status=="uncompleted" && <li className={styles.xyz}>{ab.title}</li>)}
         </ul>
         <button onClick={()=>setuncomp(true)} style={{padding:"5px", backgroundColor:"gray"}}>OK</button>
         </>
