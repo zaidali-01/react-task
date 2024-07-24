@@ -44,7 +44,7 @@ function App()
         <>
         <div>
         <ul className={styles.verbs} style={{marginTop:"1%", overflow:"hidden", border:"1px solid #e7e7e7", backgroundColor:"#f3f3f3", textAlign:"center", alignItems:"center"}}>
-        <li className={styles.nouns} onClick={()=>select(0)}>HOME</li>
+        <li className={styles.nouns} onClick={()=>select(0)}>Home</li>
         <li className={styles.nouns} onClick={()=>select(1)}>Product Card</li>
         <li className={styles.nouns} onClick={()=>select(2)}>To-Do List</li>
         <li className={styles.nouns} onClick={()=>select(3)}>Gallery</li>
