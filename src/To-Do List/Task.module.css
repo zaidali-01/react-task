@@ -1,0 +1,18 @@
+
+
+abc {
+    margin-top: 0;
+    overflow: hidden;
+    border: 0 solid rgb(19, 18, 18);
+    background-color: rgb(19, 18, 18);
+    text-align: left;
+    align-items: left;
+  }
+
+.xyz
+{
+    float:none;
+    display: list-item;
+    text-align:left;
+    padding:0;
+}
