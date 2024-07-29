@@ -9,11 +9,17 @@ function Task()
     const [comp,setcomp]=useState(true);
     const [uncomp,setuncomp]=useState(true);
     const [del,setdel]=useState(true);
+    const [edit,setedit]=useState(()=>{const saved=localStorage.getItem("edit"); return (JSON.parse(saved) || []);});
+    const [f,setf]=useState(()=>{const saved=localStorage.getItem("f"); return (JSON.parse(saved) || []);});
     
     useEffect(()=>{localStorage.removeItem("arra"); localStorage.setItem("arra",JSON.stringify(arra))},[arra]);
+    useEffect(()=>{localStorage.removeItem("edit"); localStorage.setItem("edit",JSON.stringify(edit))},[edit]);
+    useEffect(()=>{localStorage.removeItem("f"); localStorage.setItem("f",JSON.stringify(f))},[f]);
 
     function addtask(a,b)
     {
+        setf((q)=>[...q,""]);
+        setedit((prev)=>[...prev,false]);
         setarra((prevarra)=>[...prevarra,{title:a, status:b}]);
         setadd(true);
     }
@@ -57,8 +63,14 @@ function dlt(y)
     }
     else
     {
+        let u;
+        arra.map((a,b)=>a.title==y ? u=b : a);
+        let newe=edit.filter((a,b)=>b!=u);
+        let newf=f.filter((a,b)=>b!=u);
         const newarr=arra.filter((a)=>a.title!=y);
         setarra(newarr);
+        setedit(newe);
+        setf(newf);
     }
     setdel(true);
 }
@@ -147,6 +159,7 @@ function Uncompleted()
     );
 }
 
+
     return(
         <>
         <style>{'body { background-color: #3eaa3b; }'}</style>
@@ -157,14 +170,14 @@ function Uncompleted()
         <>{uncomp ? <div style={{display:"flex", flexDirection:"column", backgroundColor:"#1c7c27", borderRadius:"5px", alignItems:"center"}}>
         <h1 style={{textAlign:"center", color:"#0b4612", marginTop:"5%", marginLeft:"1%"}}>My Tasks</h1>
         <ul className={styles.abc}>
-            {arra.map((t)=><li className={styles.xyz}>{t.title} is {t.status}</li>)}
+            {arra.map((t,u)=> edit[u] ? <li><input type="text" value={f[u]} onChange={(e)=>setf(()=>f.map((g,h)=>h==u ? e.target.value : g))} style={{padding:"2px", width:"calc(3em + 3vw)", marginBottom:"10px", textAllign:"center", border:"2px solid #35ad43", backgroundColor:"#0b4612"}} /> <button onClick={()=>{setarra(()=>arra.map((a,b)=>b===u ? {...a,title:f[u]} : {...a})); setedit(()=>edit.map((a,b)=> b===u ? false : a)); }} style={{marginLeft:"4px", color:"#0b4612", padding:"3px", backgroundColor:"#0b4612",borderRadius:"5px", border:"1px solid #35ad43" }} >Save</button></li> : <li className={styles.xyz}>{t.title} is {t.status}<button onClick={()=>{setedit(()=>edit.map((a,b)=> b===u ? true : a)); setf(()=>f.map((g,h)=>h==u ? t.title : g))}} style={{marginLeft:"4px", color:"#0b4612", padding:"3px", backgroundColor:"#0b4612",borderRadius:"5px", border:"1px solid #35ad43" }}>Edit</button></li>)}
         </ul>
         <button onClick={()=>setadd(false)} style={{padding:"5px", backgroundColor:"#0b4612",borderRadius:"10px", border:"1px solid #35ad43" }}>Add Task</button>
         <button onClick={()=>setdel(false)} style={{padding:"5px", backgroundColor:"#0b4612",borderRadius:"10px", border:"1px solid #35ad43" }}>Delete Task</button>
         <button onClick={()=>setupdat(false)} style={{padding:"5px", backgroundColor:"#0b4612",borderRadius:"10px", border:"1px solid #35ad43" }}>Update Status</button>
         <button onClick={()=>setcomp(false)} style={{padding:"5px", backgroundColor:"#0b4612",borderRadius:"10px", border:"1px solid #35ad43" }}>Completed Tasks</button>
         <button onClick={()=>setuncomp(false)} style={{padding:"5px", backgroundColor:"#0b4612",borderRadius:"10px", border:"1px solid #35ad43" }}>Uncompleted Tasks</button>
-        <button onClick={()=>setarra([])} style={{padding:"5px", backgroundColor:"#0b4612",borderRadius:"10px", border:"1px solid #35ad43", marginBottom:"17%" }}>Clear All Tasks</button>
+        <button onClick={()=>{setarra([]); setedit([]); setf([])}} style={{padding:"5px", backgroundColor:"#0b4612",borderRadius:"10px", border:"1px solid #35ad43", marginBottom:"14%" }}>Clear All Tasks</button>
         </div> : <Uncompleted />}</> : <Completed />}</> : <Update />}</> : <Delet />}</> : <Adding />}
         </>
     );
