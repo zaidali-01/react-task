@@ -7,7 +7,7 @@ import Valid from './Login/Valid.js';
 import Theme from './Theme/Theme.js';
 import User from './User/User.js';
 import Stock from './Stock/Stock.js';
-import Home from './Home/Home.js'
+import Home from './Home/Home.js';
 
 function App() 
 {
@@ -43,7 +43,7 @@ function App()
     return (
         <>
         <div>
-        <ul className={styles.verbs} style={{marginTop:"1%", overflow:"hidden", border:"1px solid #e7e7e7", backgroundColor:"#f3f3f3", textAlign:"center", alignItems:"center"}}>
+        <ul className={styles.verbs}>
         <li className={styles.nouns} onClick={()=>select(0)}>Home</li>
         <li className={styles.nouns} onClick={()=>select(1)}>Product Card</li>
         <li className={styles.nouns} onClick={()=>select(2)}>To-Do List</li>
