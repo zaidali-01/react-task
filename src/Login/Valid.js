@@ -91,7 +91,6 @@ function validate()
                     </ul> : <ul style={{alignItems:"center"}}>
                         {arr.map((m)=><li key={m.id} style={{color:"red"}}>{m.msg}</li>)}
                         </ul>}
-                {console.log(arr)}
                 <button type="submit" onClick={(e)=>{
                     e.preventDefault();
                     setx(validate)}} style={{display:"block", marginLeft:"32%", marginTop:"5%", marginBottom:"6%", fontSize:"100%", padding:"3% 10%", border:"2px solid #35ad43", borderRadius:"8px", backgroundColor:"#13571b" }}>Login</button>

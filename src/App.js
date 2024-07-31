@@ -2,12 +2,14 @@ import React, { useState } from "react";
 import styles from './App.module.css';
 import Pictures from './Gallery/Pictures.js';
 import Cards from './Product/Cards.js';
-import Task from './To-Do List/Task.js';
+import Lists from './Reduxuse/Lists.js';
 import Valid from './Login/Valid.js';
 import Theme from './Theme/Theme.js';
 import User from './User/User.js';
 import Stock from './Stock/Stock.js';
 import Home from './Home/Home.js';
+import store from "./Reduxuse/store.js";
+import { Provider } from "react-redux";
 
 function App() 
 {
@@ -56,7 +58,7 @@ function App()
         {home && <Home />}
         {gal && <Pictures />}
         {card && <Cards />}
-        {task && <Task />}
+        {task && <Provider store={store}><Lists /></Provider>}
         {login && <Valid />}
         {theme && <Theme />}
         {user && <User />}
