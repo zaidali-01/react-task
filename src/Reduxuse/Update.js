@@ -1,5 +1,6 @@
 import React,{useState} from "react";
 import { useDispatch } from "react-redux";
+import { updatestatus } from "./reducer.js";
 
 function Update(props)
 {
@@ -8,7 +9,7 @@ function Update(props)
 
     function update()
     {
-        dispatch({type:'updatestatus',payload:z});
+        dispatch(updatestatus(z));
         props.func(true);
     }
 

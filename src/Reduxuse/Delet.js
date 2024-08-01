@@ -1,5 +1,6 @@
 import React,{useState} from "react";
 import { useDispatch } from "react-redux";
+import { deletetask } from "./reducer.js";
 
 function Delet(props)
 {
@@ -8,7 +9,7 @@ function Delet(props)
 
     function dlt()
     {
-        dispatch({type:'deletetask',payload:y});
+        dispatch(deletetask(y));
         props.func(true);
     }
 

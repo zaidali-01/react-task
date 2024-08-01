@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 
 function Uncompleted(props)
 {
-    const st=useSelector((state)=>state.arr);
+    const st=useSelector((state)=>state.lists.arr);
     return(
         <div style={{display:"flex", borderRadius:"5px", flexDirection:"column", backgroundColor:"#1c7c27",alignItems:"center"}}>
         <h2 style={{color:"#0b4612", marginTop:"5%", marginLeft:"3%"}}>The uncompleted tasks are:</h2>

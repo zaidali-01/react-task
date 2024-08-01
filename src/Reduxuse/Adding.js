@@ -1,5 +1,6 @@
 import React,{useState} from "react";
 import { useDispatch } from "react-redux";
+import { addtask } from "./reducer.js";
 
 function Adding(props)
 {
@@ -7,9 +8,9 @@ function Adding(props)
     const [b,setb]=useState("");
     const dispatch=useDispatch();
 
-    function addtask()
+    function addtas()
     {
-        dispatch({type:'addtask',payload:{title:a,status:b}});
+        dispatch(addtask({title:a,status:b}));
         props.func(true);
     }
 
@@ -27,7 +28,7 @@ function Adding(props)
                     <option value="uncompleted">uncompleted</option>
                 </select>
             </label><br></br>
-            <button onClick={(e)=>addtask()} style={{padding:"calc(0.15rem + 0.15vw)", backgroundColor:"#0b4612", border:"1px solid #35ad43", borderRadius:"5px", marginLeft:"calc(1.4rem + 1.4vw)", marginBottom:"120%"}}>Add</button>
+            <button onClick={(e)=>addtas()} style={{padding:"calc(0.15rem + 0.15vw)", backgroundColor:"#0b4612", border:"1px solid #35ad43", borderRadius:"5px", marginLeft:"calc(1.4rem + 1.4vw)", marginBottom:"120%"}}>Add</button>
         </form>
         </div>
     );

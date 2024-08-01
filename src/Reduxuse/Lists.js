@@ -6,6 +6,7 @@ import Update from './Update.js';
 import Delet from './Delet.js';
 import Completed from './Completed.js';
 import Uncompleted from './Uncompleted.js';
+import { clearall } from './reducer.js';
 
 function Lists()
 {
@@ -15,7 +16,7 @@ function Lists()
     const [uncomp,setuncomp]=useState(true);
     const [del,setdel]=useState(true);
     
-const st=useSelector((state)=>state.arr);
+const st=useSelector((state)=>state.lists.arr);
 const dispatch=useDispatch();
 
     return (
@@ -35,7 +36,7 @@ const dispatch=useDispatch();
         <button onClick={()=>setupdat(false)} style={{padding:"5px", backgroundColor:"#0b4612",borderRadius:"10px", border:"1px solid #35ad43" }}>Update Status</button>
         <button onClick={()=>setcomp(false)} style={{padding:"5px", backgroundColor:"#0b4612",borderRadius:"10px", border:"1px solid #35ad43" }}>Completed Tasks</button>
         <button onClick={()=>setuncomp(false)} style={{padding:"5px", backgroundColor:"#0b4612",borderRadius:"10px", border:"1px solid #35ad43" }}>Uncompleted Tasks</button>
-        <button onClick={()=>dispatch({type:'clearall'})} style={{padding:"5px", backgroundColor:"#0b4612",borderRadius:"10px", border:"1px solid #35ad43", marginBottom:"14%" }}>Clear All Tasks</button>
+        <button onClick={()=>dispatch(clearall())} style={{padding:"5px", backgroundColor:"#0b4612",borderRadius:"10px", border:"1px solid #35ad43", marginBottom:"14%" }}>Clear All Tasks</button>
         </div> : <Uncompleted func={setuncomp} />}</> : <Completed func={setcomp} />}</> : <Update func={setupdat} />}</> : <Delet func={setdel} />}</> : <Adding func={setadd} />}
         </>
     );
