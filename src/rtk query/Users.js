@@ -73,7 +73,6 @@ function Edit(props)
 function Users()
 {
     const {data,isLoading,refetch} = useFetchUsersQuery();
-    
 
     if(isLoading)
         return <p>loading...</p>;
